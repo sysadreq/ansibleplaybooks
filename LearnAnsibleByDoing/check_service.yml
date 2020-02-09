@@ -1,0 +1,9 @@
+--- #check if service is running
+- hosts: dbsystems
+  become: yes
+  tasks:
+  - name: auditd service
+    service:
+      name: auditd
+      state: started
+      enabled: yes
