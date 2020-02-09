@@ -1,5 +1,5 @@
 --- # copy ssh keys
-- hosts: dbsystems
+- hosts: db1
   become: yes
   tasks:
   - name: copy ssh keys to remote hosts
@@ -11,7 +11,7 @@
       mode: 0600
   - name: copy ssh keys to remote hosts
     copy:
-      src: /home/ansible/keys/home/consultant/authorized_keys
+      src: /home/ansible/keys/consultant/authorized_keys
       dest: /home/consultant/authorized_keys
       owner: consultant
       group: consultant
