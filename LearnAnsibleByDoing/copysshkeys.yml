@@ -4,13 +4,13 @@
   tasks:
   - name: copy .ssh folder
     file:
-      path: /home/ansible/keys/consultant/.ssh
+      path: /home/consultant/.ssh
       state: directory
       mode: 700
       owner: consultant
   - name: copy .ssh folder
     file:
-      path: /home/ansible/keys/supervisor/.ssh
+      path: /home/supervisor/.ssh
       state: directory
       mode: 700
       owner: supervisor
