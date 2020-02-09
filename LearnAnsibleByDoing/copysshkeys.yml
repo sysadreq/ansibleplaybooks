@@ -2,18 +2,30 @@
 - hosts: db1
   become: yes
   tasks:
+  - name: copy .ssh folder
+    file:
+      path: /home/ansible/keys/consultant/.ssh
+      state: directory
+      mode: 700
+      owner: consultant
+  - name: copy .ssh folder
+    file:
+      path: /home/ansible/keys/supervisor/.ssh
+      state: directory
+      mode: 700
+      owner: supervisor
   - name: copy ssh keys to remote hosts
     copy:
       src: /home/ansible/keys/supervisor/authorized_keys
-      dest: /home/supervisor/authorized_keys
+      dest: /home/supervisor/.ssh/authorized_keys
       owner: supervisor
       group: supervisor
       mode: 0600
   - name: copy ssh keys to remote hosts
     copy:
       src: /home/ansible/keys/consultant/authorized_keys
-      dest: /home/consultant/authorized_keys
+      dest: /home/consultant/.ssh/authorized_keys
       owner: consultant
       group: consultant
       mode: 0600
- 
+
