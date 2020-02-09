@@ -11,8 +11,8 @@
       mode: 0600
   - name: copy ssh keys to remote hosts
     copy:
-      src: /home/consultant/consultant/authorized_keys
-      dest: /home/consultant/consultant/authorized_keys
+      src: /home/consultant/authorized_keys
+      dest: /home/consultant/authorized_keys
       owner: consultant
       group: consultant
       mode: 0600
