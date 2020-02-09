@@ -1,0 +1,20 @@
+--- #web.yml
+- hosts: web
+  become: yes
+  tasks:
+  - name: install httpd
+    yum:
+      name: httpd
+      state: latest
+  - name: start and enable httpd service
+    service:
+      name: httpd
+      enabled: yes
+      state: started
+  - name: download and unarchive http://repo.example.com/website.tgz
+    unarchive:
+      src: http://repo.example.com/website.tgz
+      remote_src: yes
+      dest: /var/www/html
+      owner: apache
+      owner: apache
