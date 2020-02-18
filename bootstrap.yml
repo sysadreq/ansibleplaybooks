@@ -1,0 +1,52 @@
+--- # bootstrap.yml
+- hosts: all
+  become: yes
+  tasks:
+  - name: add "ansible.xzycorp.com 169.168.0.1" in /etc/hosts file
+    lineinfile:
+      path: /etc/hosts
+      line: "169.168.0.1  ansible.xyzcorp.com"
+      state: present
+  - name: install elinks
+    package:
+      name: elinks
+      state: latest
+  - name: create user xzycorp_audit
+    user:
+      name: xyzcorp_audit
+      state: present
+  - name: copy files
+    copy:
+      src: /home/ansible/motd
+      dest: /etc/motd
+      remote_src: no 
+  - name: copy issue
+    copy:
+      src: /home/ansible/issue
+      dest: /etc/issue
+      remote_src: no
+
+
+
+- hosts: network
+  become: yes
+  tasks:
+  - name: install nmap_ncat
+    package: 
+      name: nc
+      state: present
+  - name: create user xyzcorp_network
+    user: 
+      name: xyzcorp_network
+      state: present
+
+
+- hosts: sysadmin
+  become: yes
+  tasks:
+  - name: copy scripts.tgz
+    copy:
+      src: /home/ansible/scripts.tgz
+      dest: /mnt/storage
+      remote_src: no
+
