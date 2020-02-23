@@ -1,0 +1,16 @@
+--- # using ansible facts
+- hosts: localhost
+  become: yes
+  tasks:
+  - name: get the hostname and write in a file
+    lineinfile:
+      path: /tmp/facts
+      line: 'hostname: "{{ ansible_hostname }}"'
+      create: yes
+      state: present
+  - name: get the ip address and write in a file
+    lineinfile:
+      path: /tmp/facts
+      line: 'Public IPv4: "{{ ansible_all_ipv4_addresses }}"'
+      create: yes
+      state: present
